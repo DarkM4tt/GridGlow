@@ -153,7 +153,7 @@ const Home: React.FC = () => {
             <Tbody>
               {students.map((student, idx) => (
                 <Tr key={student.id} cursor="pointer">
-                  <Td>{idx}</Td>
+                  <Td>{idx+1}</Td>
                   <Td>{student.name}</Td>
                   <Td>{student.username}</Td>
                   <Td>{student.email}</Td>
