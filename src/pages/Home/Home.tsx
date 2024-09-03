@@ -82,6 +82,58 @@ const Home: React.FC = () => {
       </Box>
 
       {view === "grid" ? (
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
+          {students.map((student) => (
+            <Box
+              key={student.id}
+              p={4}
+              bg="white"
+              shadow="md"
+              borderRadius="md"
+              position="relative"
+              cursor="pointer"
+            >
+              <Box fontWeight="bold" mb={2}>
+                {student.name}
+              </Box>
+              <Box>Email: {student.email}</Box>
+              <Box>Phone: {student.phone}</Box>
+              <Box>City: {student.address.city}</Box>
+              <Box>Company: {student.company.name}</Box>
+
+              <Box position="absolute" top="2" right="2" display="flex" gap={2}>
+                <IconButton
+                  icon={<ViewIcon />}
+                  size="sm"
+                  aria-label="View"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleTileClick(student);
+                  }}
+                />
+                <IconButton
+                  icon={<EditIcon />}
+                  size="sm"
+                  aria-label="Edit"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleTileClick(student, true);
+                  }}
+                />
+                <IconButton
+                  icon={<DeleteIcon />}
+                  size="sm"
+                  aria-label="Delete"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteStudent(student.id);
+                  }}
+                />
+              </Box>
+            </Box>
+          ))}
+        </SimpleGrid>
+      ) : (
         <Box overflowY="auto">
           <Table variant="simple" size="md">
             <Thead>
@@ -137,58 +189,6 @@ const Home: React.FC = () => {
             </Tbody>
           </Table>
         </Box>
-      ) : (
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
-          {students.map((student) => (
-            <Box
-              key={student.id}
-              p={4}
-              bg="white"
-              shadow="md"
-              borderRadius="md"
-              position="relative"
-              cursor="pointer"
-            >
-              <Box fontWeight="bold" mb={2}>
-                {student.name}
-              </Box>
-              <Box>Email: {student.email}</Box>
-              <Box>Phone: {student.phone}</Box>
-              <Box>City: {student.address.city}</Box>
-              <Box>Company: {student.company.name}</Box>
-
-              <Box position="absolute" top="2" right="2" display="flex" gap={2}>
-                <IconButton
-                  icon={<ViewIcon />}
-                  size="sm"
-                  aria-label="View"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTileClick(student);
-                  }}
-                />
-                <IconButton
-                  icon={<EditIcon />}
-                  size="sm"
-                  aria-label="Edit"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleTileClick(student, true);
-                  }}
-                />
-                <IconButton
-                  icon={<DeleteIcon />}
-                  size="sm"
-                  aria-label="Delete"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleDeleteStudent(student.id);
-                  }}
-                />
-              </Box>
-            </Box>
-          ))}
-        </SimpleGrid>
       )}
 
       {selectedStudent && (
