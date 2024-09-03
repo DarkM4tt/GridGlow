@@ -25,10 +25,14 @@ interface Student {
   website: string;
   company: {
     name: string;
+    catchPhrase: string;
+    bs: string;
   };
   address: {
     city: string;
     street: string;
+    suite: string;
+    zipcode: string;
   };
 }
 
