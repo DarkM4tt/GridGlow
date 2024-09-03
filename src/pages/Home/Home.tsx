@@ -151,9 +151,9 @@ const Home: React.FC = () => {
               </Tr>
             </Thead>
             <Tbody>
-              {students.map((student) => (
+              {students.map((student, idx) => (
                 <Tr key={student.id} cursor="pointer">
-                  <Td>{student.id}</Td>
+                  <Td>{idx}</Td>
                   <Td>{student.name}</Td>
                   <Td>{student.username}</Td>
                   <Td>{student.email}</Td>
